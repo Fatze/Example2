@@ -1,0 +1,40 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1447423612916
+Build-Jdk: 1.7.0_79
+Built-By: Dostanko_VL
+Bundle-ClassPath: .,WEB-INF/classes,WEB-INF/lib/hawtio-plugin-mbean-1.2-
+ redhat-379.jar,WEB-INF/lib/gson-2.2.4.jar,WEB-INF/lib/slf4j-api-1.7.12.
+ jar,WEB-INF/lib/slf4j-log4j12-1.7.12.jar,WEB-INF/lib/log4j-1.2.17.jar
+Bundle-Description: ST :: Examples :: Example2
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: ST :: Examples :: Example2
+Bundle-SymbolicName: by.st.Examples.Example2
+Bundle-Version: 1.2.0.redhat-379
+Created-By: Apache Maven Bundle Plugin
+Embed-Dependency: *;scope=compile|runtime
+Embed-Directory: WEB-INF/lib
+Embed-Transitive: true
+Embedded-Artifacts: WEB-INF/lib/hawtio-plugin-mbean-1.2-redhat-379.jar;g
+ ="io.hawt";a="hawtio-plugin-mbean";v="1.2-redhat-379",WEB-INF/lib/gson-
+ 2.2.4.jar;g="com.google.code.gson";a="gson";v="2.2.4",WEB-INF/lib/slf4j
+ -api-1.7.12.jar;g="org.slf4j";a="slf4j-api";v="1.7.12",WEB-INF/lib/slf4
+ j-log4j12-1.7.12.jar;g="org.slf4j";a="slf4j-log4j12";v="1.7.12",WEB-INF
+ /lib/log4j-1.2.17.jar;g="log4j";a="log4j";v="1.2.17"
+Export-Package: by.st.Examples.Example2.MBean;uses:="javax.servlet";vers
+ ion="1.2.0.redhat-379"
+Implementation-Title: by.st.Examples
+Implementation-Version: 1.2-redhat-379
+Import-Package: com.ibm.uvm.tools;resolution:=optional,com.sun.jdmk.comm
+ ;resolution:=optional,javax.jmdns;resolution:=optional,javax.jms;resolu
+ tion:=optional,javax.mail;resolution:=optional,javax.mail.internet;reso
+ lution:=optional,javax.management;resolution:=optional,javax.naming;res
+ olution:=optional,javax.security.auth,javax.servlet,javax.swing;resolut
+ ion:=optional,javax.swing.border;resolution:=optional,javax.swing.event
+ ;resolution:=optional,javax.swing.table;resolution:=optional,javax.swin
+ g.text;resolution:=optional,javax.swing.tree;resolution:=optional,javax
+ .xml.parsers;resolution:=optional,org.w3c.dom;resolution:=optional,org.
+ xml.sax;resolution:=optional,org.xml.sax.helpers;resolution:=optional
+Tool: Bnd-1.50.0
+Web-ContextPath: /Example2
+Webapp-Context: /Example2

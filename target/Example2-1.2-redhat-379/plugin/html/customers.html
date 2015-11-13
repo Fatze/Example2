@@ -1,0 +1,44 @@
+<style type="text/css">
+    .gridStyle {
+        border: 1px solid rgb(212, 212, 212);
+        width: 100%;
+        height: 100%
+    }
+</style>
+<div data-ng-app="Customers" data-ng-controller="customersCtrl as Ctrl">
+    <div>
+        <button ng-click="Ctrl.RequestInformation()">Request Information()</button>
+        <button class="btn" ng-click="Ctrl.showDeleteOne.open()">open1</button>
+        <button class="btn" ng-click="Ctrl.showModal()">open2</button>
+    </div>
+    </br>
+    <div class="span8" data-ng-show="Ctrl.IsGridVisible()">
+        <div class="gridStyle" data-ng-grid="Ctrl.gridOptions"></div>
+    </div>
+    <div class="ng-cloak">
+        <div hawtio-confirm-dialog="Ctrl.showDeleteOne.show" title="Delete Stuff?" ok-button-text="Yes, Delete the Stuff" cancel-button-text="No, Keep the Stuff"
+        on-cancel="Ctrl.onCancelled('One')" on-ok="Ctrl.onOk('One')">
+            <div class="dialog-body">
+                <p>
+                    Are you sure you want to delete all the stuff?
+                </p>
+            </div>
+        </div>
+        <div data-ng-controller="modalCtrl as Modal">
+            <div modal="Modal.isEditing">
+                <form class="form-horizontal no-bottom-margin" ng-submit="Modal.hide()">
+                    <div class="modal-header">Log out</div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to log out?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <input class="btn btn-success" type="submit" value="Yes">
+                        <input class="btn btn-primary" ng-click="Modal.hide()" value="No">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+

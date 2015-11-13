@@ -1,0 +1,27 @@
+<style type="text/css">
+    .gridStyle {
+        border: 1px solid rgb(212, 212, 212);
+        width: 100%;
+        height: 100%
+    }
+</style>
+
+<div data-ng-controller="Sample1.SimpleController1">
+    <!--<div class="row-fluid">
+        <div class="span12">
+            <div>-->
+                 <button ng-click="RequestInformation()">Request Information()</button> 
+                <!--<form name="inputForm" data-ng-submit="RequestInformation()" data-ng-mouseenter="hover(isReply)">
+                    <div>
+                        User Param <br/>(example : @Param) : <input type="text" class="entry-widget" data-ng-model="userParam">
+                    </div>
+                    <input type="submit" class="btn btn-success" data-ng-disabled="!userParam" value="Request information">
+                </form>-->
+            <!--</div>
+        </div>
+    </div>-->
+     <!--data-ng-show="isReply"--> 
+    <div class="span8">
+        <div class="gridStyle" data-ng-grid="gridOptions"></div>
+    </div>
+</div>
