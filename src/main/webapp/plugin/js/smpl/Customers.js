@@ -1,3 +1,4 @@
+//# sourceURL=src\main\webapp\plugin\js\smpl\Customers.js
 var Customers;
 (function (Customers) {
     // var section    
@@ -12,10 +13,9 @@ var Customers;
     //    
     var _module = angular.module(pluginName, ['Context', 'Services', 'ui', 'bootstrap', 'ui.bootstrap', 'ui.bootstrap.modal', 'ngResource', 'ngGrid', 'hawtioCore', 'hawtio-ui', 'hawtio-forms']);
     _module.config(['$routeProvider', 'paths', 'plugin', customersConfig]);
-    _module.service
     _module.run(['workspace', 'viewRegistry', 'layoutFull', 'paths', 'plugin', customersRun]);
     _module.controller('modalCtrl', ['$scope', modalCtrl]);
-    _module.controller(controllerName, ['$scope', 'customersService', customersCtrl]);
+    _module.controller(controllerName, ['$scope', 'customersService','JSONShemaService','UrlsProvider', customersCtrl]);
    
     //
     
@@ -39,14 +39,18 @@ var Customers;
             isActive: function (workspace) { return workspace.isTopTabActive("Customers"); }
         });    };
 
-    function customersCtrl($scope, customersService) {
+    function customersCtrl($scope,customersService,JSONShemaService,Urls) {
         var vm = this;
         $scope['vm'] = this;
         log.debug('customersCtrl');
         vm.isReply = false;
+        var jl = Urls.Jolokia();
         //this.myData = {};
+       
         vm.gridOptions = {
             data: 'vm.gridData',
+            multiSelect: false,
+            selectedItems: [],
             //enableCellEdit: true,
         };
         vm.RequestInformation = function () {
@@ -68,11 +72,11 @@ var Customers;
         ////
         vm.showDeleteOne = new UI.Dialog();
         vm.onCancelled = function (number) {
-            notification('info', 'cancelled ' + number);
+            notification('info', vm.ModalData["testvalue"] + 'cancelled ');
         };
 
         vm.onOk = function (number) {
-            notification('info', number + ' ok!');
+            notification('info', vm.ModalData["testvalue"] + ' saved!');
         }; 
 
         vm.showModal = function () {
@@ -80,6 +84,32 @@ var Customers;
                 someProp: 'Sending you an Object!' // посылайте что хотите
             });
         };
+        
+        vm.showModal1 = function () {            
+            JSONShemaService.getRemote(customersService.getObjecName(),function(shemaValue){
+                vm.ModalConfig = shemaValue;
+                vm.showDeleteOne.open();
+            },jl);
+             
+            //vm.ModalData["testvalue"] = vm.gridOptions.selectedItems[0].firstName;
+            
+        };
+        
+        vm.ModalConfig = {
+            "properties": {
+                "testvalue": {
+                    "description": "Enter the argument value",
+                    "label": "The Value",
+                    "type": "java.lang.String",
+                    "tooltip": "This is the tooltip",
+                    "input-attributes": {
+                        "placeholder": "Hello World!",
+                        "value": "This is also an initial value"
+                    }
+                },
+            }
+        };
+        vm.ModalData = {"testvalue": "Empty"};
 
     };
     //modal

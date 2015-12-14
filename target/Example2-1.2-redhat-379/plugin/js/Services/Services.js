@@ -1,3 +1,4 @@
+//# sourceURL=src\main\webapp\plugin\js\Services\Services.js
 var Services;
 (function (Services) {
     // var section    
@@ -11,8 +12,8 @@ var Services;
     var urls = null;
     //
     var _module = angular.module(pluginName, ['Context']);
-    _module.config(['paths', customerConfig]);
-    _module.service(serviceName, ['$http', customersService]);
+    _module.config(['paths','UrlsProvider', customerConfig]);
+    _module.service(serviceName, ['$http',customersService]);
     
     
     //const //need to move in context obj
@@ -24,35 +25,38 @@ var Services;
     //     path2doc: '/plugin/doc/'
     // });
     
-    function customerConfig(paths) {
+    function customerConfig(paths,UrlsProvider) {
         var srv = paths.host ? paths.host + paths.port ? ':' + paths.port : '' : '';
-        var sevicesrv = 'http://127.0.0.1:818/cxf/route/service';
+        var sevicesrv = paths.Server+'cxf/route/service';
         urls = {
             html: srv + '/' + paths.path2html,
-            dos: srv + '/' + paths.path2doc,
+            doc: srv + '/' + paths.path2doc,
             sevice: {
                 url: '',
                 getById: sevicesrv+'/customer',
                 list: sevicesrv+'/customer',
                 add: sevicesrv+'/add',
-                update: sevicesrv+'/update'
+                update: sevicesrv+'/update',
+                object: 'by.st.ConnectionsDemo1.Model.ConnectionModel'
             }
         };
     };
     /// logic
     function customersService($http) {
+        function mapParams(Customer){
+            return {
+                nationalID: Customer.nationalID,
+                firstName: Customer.firstName,
+                lastName: Customer.lastName,
+                age: Customer.age,
+                occupation: Customer.occupation,
+                Developer: Customer.Developer,
+            };
+        } 
         // Create new record
+        //?nationalID=10&firstName=Christina&lastName=Lin&age=292&occupation=Sofrware%20Developer2
         this.post = function (Customer) {
-            return $http.get(urls.sevice.add, {
-                //?nationalID=10&firstName=Christina&lastName=Lin&age=292&occupation=Sofrware%20Developer2
-                params: {
-                    nationalID: Customer.nationalID,
-                    firstName: Customer.firstName,
-                    lastName:Customer.lastName,
-                    age:Customer.age,
-                    occupation:Customer.occupation,
-                    Developer:Customer.Developer,
-                }});         
+            return $http.get(urls.sevice.add, {params: mapParams(Customer)});  
         }
         //Get Single Records
         this.get = function (CustomerNo) {
@@ -65,17 +69,14 @@ var Services;
         } 
  
         //Update the Record
-        this.put = function (CustomerNo, Customer) {
-             return $http.get(urls.sevice.update, {
-                //?nationalID=10&firstName=Christina&lastName=Lin&age=292&occupation=Sofrware%20Developer2
-                params: {
-                    nationalID: Customer.nationalID,
-                    firstName: Customer.firstName,
-                    lastName:Customer.lastName,
-                    age:Customer.age,
-                    occupation:Customer.occupation,
-                    Developer:Customer.Developer,
-                }});     
+        //?nationalID=10&firstName=Christina&lastName=Lin&age=292&occupation=Sofrware%20Developer2
+        this.put = function (CustomerNo, Customer) {            
+             return $http.get(urls.sevice.update, {params: mapParams(Customer)});     
+        }
+        
+        //Get Object  Name for Customer
+        this.getObjecName = function (){
+            return 'com.mycompany.RSservice.model.CustInfo';
         }
         
     };

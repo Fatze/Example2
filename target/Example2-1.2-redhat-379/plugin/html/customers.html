@@ -8,17 +8,19 @@
 <div data-ng-app="Customers" data-ng-controller="customersCtrl as Ctrl">
     <div>
         <button ng-click="Ctrl.RequestInformation()">Request Information()</button>
-        <button class="btn" ng-click="Ctrl.showDeleteOne.open()">open1</button>
+        <button class="btn" ng-click="Ctrl.showModal1()">open1</button>
         <button class="btn" ng-click="Ctrl.showModal()">open2</button>
     </div>
     </br>
     <div class="span8" data-ng-show="Ctrl.IsGridVisible()">
         <div class="gridStyle" data-ng-grid="Ctrl.gridOptions"></div>
+        <!--<div hawtio-input-table="Ctrl.inputTableConfig" entity="Ctrl.inputTableData" data="Ctrl.inputTableConfig" property="rows"></div>-->
     </div>
     <div class="ng-cloak">
         <div hawtio-confirm-dialog="Ctrl.showDeleteOne.show" title="Delete Stuff?" ok-button-text="Yes, Delete the Stuff" cancel-button-text="No, Keep the Stuff"
         on-cancel="Ctrl.onCancelled('One')" on-ok="Ctrl.onOk('One')">
             <div class="dialog-body">
+                <div simple-form name="attributeEditor" mode="edit" entity='Ctrl.ModalData' data='Ctrl.ModalConfig'></div>
                 <p>
                     Are you sure you want to delete all the stuff?
                 </p>

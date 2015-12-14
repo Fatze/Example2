@@ -29,7 +29,7 @@
     <context-param>
         <description>Plugin's path on the server</description>
         <param-name>plugin-scripts</param-name>
-        <param-value>plugin/js/Context.js,plugin/js/Services/Services.js,plugin/js/smpl/Customers.js</param-value>
+        <param-value>plugin/js/Context.js,plugin/js/Services/Services.js,plugin/js/Services/ShemaService.js,plugin/js/smpl/Customers.js</param-value>
     </context-param>
 
 <!--    <context-param>

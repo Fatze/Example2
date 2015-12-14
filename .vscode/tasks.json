@@ -25,7 +25,16 @@
             "taskName": "clean",
 			"isBuildCommand": true,
             "args": ["clean"]
-        }
+        },
+		{
+			"taskName": "deploy",
+			"suppressTaskName": true,
+			"showOutput": "always",
+			"args": [
+				"-X",
+				"io.fabric8:fabric8-maven-plugin:1.2.0.Beta4:deploy"
+			]
+		}
     ]
 }
 

@@ -20,7 +20,7 @@
 	<description>ST :: Examples :: ${project.artifactId}</description>
 	<url>http://st.by/</url>
 	<properties>
-		<fabric8.profile>by.st-Examples-${project.artifactId}</fabric8.profile>
+		<fabric8.profile>by.st-Examples.${project.artifactId}</fabric8.profile>
 		<!--<fabric8.profile>${project.groupId}-${project.artifactId}</fabric8.profile> -->
 		<!-- filtered plugin properties -->
 		<!--<plugin-name>${project.artifactId}</plugin-name> -->
